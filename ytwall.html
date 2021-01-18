@@ -1,0 +1,53 @@
+<html>
+<head>
+<style>
+    body {
+		margin: 0;
+	}
+	#overlay {
+		position: absolute;
+		width:100%;
+		height:100%;
+		z-index:2;
+	}
+	
+	#video {
+		position: absolute:
+		width:100%;
+		height:100%;
+		z-index:-1;
+	}
+	
+	#video_frame {
+		width:100%;
+		height:100%;
+	}
+		
+</style>
+
+<script>
+
+window.onload = function () {
+	var url_string = window.location.href
+	var url = new URL(url_string);
+	var v = url.searchParams.get("v");
+	console.log(v);
+
+	var url = "https://www.youtube.com/embed/" + v + "?autoplay=1&loop=1&showinfo=0&controls=0&rel=0&mute=1";
+
+	document.getElementById("video_frame").src = url;
+}
+
+</script>
+
+</head>
+
+<body>
+<div id="overlay"></div>
+<div id="video">
+	<iframe id="video_frame"></iframe>
+</div>
+</body>
+</html>
+
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/51HjH56WxC8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
