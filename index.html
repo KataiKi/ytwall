@@ -27,8 +27,10 @@
                       function onYouTubeIframeAPIReady() {
                         player = new YT.Player('player', {
                             videoId: (new URL(window.location.href)).searchParams.get("v"),
-							width: '100%',
-							height: '100%',
+			    listType: "playlist",
+			    list: (new URL(window.location.href)).searchParams.get("p"),
+			    width: '100%',
+			    height: '100%',
                             playerVars: {
                                 modestbranding: 0,
                                 autoplay: 1,
