@@ -59,7 +59,7 @@
                         function onPlayerStateChange(event) {
 						    var YTP=event.target;
 						    if(event.data===1){
-								var remains=(endTime ? endTime : YTP.getDuration() ) - YTP.getCurrentTime();
+								var remains=YTP.getDuration() - YTP.getCurrentTime();
 								if(this.rewindTO)
 									clearTimeout(this.rewindTO);
 								this.rewindTO=setTimeout(function(){
