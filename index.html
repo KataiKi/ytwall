@@ -24,8 +24,8 @@
                       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 			    
                       var params = (new URL(window.location.href)).searchParams;
-		      var startTime = params.get("s");
-		      var runTime = params.get("t");
+		      var startTime = parseInt(params.get("s"));
+		      var runTime = parseInt(params.get("t"));
 			    
                       var player;
                       function onYouTubeIframeAPIReady() {
