@@ -72,9 +72,9 @@
     function onPlayerStateChange(event) {
         var YTP=event.target;
         
-        debugLog("State: " + YTP.PlayerState);
+        debugLog("State: " + event.data);
         //Restart if ended
-        if (event.data === YTP.PlayerState.ENDED) {
+        if (event.data === YT.PlayerState.ENDED) {
             YTP.playVideo(); 
         }
         
