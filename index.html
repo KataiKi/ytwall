@@ -54,6 +54,7 @@
         });
     }
     function onPlayerReady(event) {
+        document.title = event.target.getVideoData().title;
         event.target.seekTo(s); console.log(s);
         event.target.playVideo();
         console.log("Ready");
