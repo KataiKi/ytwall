@@ -9,13 +9,18 @@
         width:100%;
         height:100%;
         z-index:2;
-    }        
+    }
+    #debug {
+        display:none;
+    }
 </style>
 
 </head>
 
 <body>
-<div id="overlay"></div>
+<div id="overlay">
+    <div id="debug"><pre id="console"></pre></div>
+</div>
 <div id="player"></div>
     <script>
     var tag = document.createElement('script');
@@ -24,6 +29,9 @@
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var params = (new URL(window.location.href)).searchParams;
+    var debug = params.get("d");
+    if(debug) document.getElementById("debug").style.display = "block";
+        
     var v = params.get("v");
     var s = params.get("s") ? parseFloat(params.get("s")) : 0;
     var e = params.get("e") ? parseFloat(params.get("e")) : null;
@@ -55,20 +63,26 @@
     }
     function onPlayerReady(event) {
         document.title = event.target.getVideoData().title;
-        event.target.seekTo(s); console.log(s);
+        event.target.seekTo(s); debugLog("seekTo: " + s);
         event.target.playVideo();
-        console.log("Ready");
+        debuglog("Ready");
     }
     function onPlayerStateChange(event) {
         var YTP=event.target;
         if(event.data===1){
-            var remains= (e ? e : YTP.getDuration()) - YTP.getCurrentTime(); console.log(remains);
+            var remains= (e ? e : YTP.getDuration()) - YTP.getCurrentTime(); 
+            debugLog("e:" + e + " Duration:" + YTP.getDuration() + " Current:" + YTP.getCurrentTime() + " Remains:" + remains);
             if(this.rewindTO)
                 clearTimeout(this.rewindTO);
             this.rewindTO=setTimeout(function(){
                  YTP.seekTo(s);
              },(remains-0.5)*1000);
         }
+    }
+        
+    function debugLog(s) {
+        var c = document.getElementById("console");
+        c.innerHTML += "\n" + s; 
     }
     </script>
 </body>
