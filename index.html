@@ -81,7 +81,7 @@
         //Attempt to avoid blip at end of video
         if(event.data===1){
             var remains= (e ? e : YTP.getDuration()) - YTP.getCurrentTime(); 
-            debugLog("e:" + e + " Duration:" + YTP.getDuration() + " Current:" + YTP.getCurrentTime() + " Remains:" + remains);
+            debugLog("e:" + (e?e:"null") + " Duration:" + YTP.getDuration() + " Current:" + YTP.getCurrentTime() + " Remains:" + remains);
             if(this.rewindTO)
                 clearTimeout(this.rewindTO);
             this.rewindTO=setTimeout(function(){
