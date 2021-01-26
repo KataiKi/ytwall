@@ -71,6 +71,13 @@
     }
     function onPlayerStateChange(event) {
         var YTP=event.target;
+        
+        //Restart if ended
+        if (e.data === YTP.PlayerState.ENDED) {
+            YTP.playVideo(); 
+        }
+        
+        //Attempt to avoid blip at end of video
         if(event.data===1){
             var remains= (e ? e : YTP.getDuration()) - YTP.getCurrentTime(); 
             debugLog("e:" + e + " Duration:" + YTP.getDuration() + " Current:" + YTP.getCurrentTime() + " Remains:" + remains);
@@ -78,7 +85,7 @@
                 clearTimeout(this.rewindTO);
             this.rewindTO=setTimeout(function(){
                  YTP.seekTo(s);
-             },(remains-0.5)*1000);
+             },(remains-0.8)*1000);
         }
     }
         
